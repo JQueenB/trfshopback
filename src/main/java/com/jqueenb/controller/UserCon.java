@@ -1,5 +1,6 @@
 package com.jqueenb.controller;
 
+import com.jqueenb.pojo.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserCon {
     @RequestMapping(value="/login.co")
     @ResponseBody
-    public int u(){
-        int a=9;
-        return a;
+    public UserInfo u(){
+        UserInfo userlogin=new UserInfo();
+        userlogin.setId(1);
+        userlogin.setUsername("baijingkun");
+        return userlogin;
     }
 }
