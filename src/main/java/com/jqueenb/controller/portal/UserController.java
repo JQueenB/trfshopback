@@ -5,7 +5,6 @@ import com.jqueenb.common.ServerResponse;
 import com.jqueenb.pojo.UserInfo;
 import com.jqueenb.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -76,9 +75,13 @@ public class UserController {
         if(userInfo==null){
             return ServerResponse.createByError("用户未登录");
         }
-        userInfo.setPassword("");
-        userInfo.setQuestion("");
-        userInfo.setPassword("");
+        UserInfo newUserInfo=new UserInfo();
+        newUserInfo.setId(userInfo.getId());
+        newUserInfo.setUsername(userInfo.getUsername());
+        newUserInfo.setEmail(userInfo.getEmail());
+        newUserInfo.setPhone(userInfo.getPhone());
+        newUserInfo.setCreateTime(userInfo.getCreateTime());
+        newUserInfo.setUpdateTime(userInfo.getUpdateTime());
         return ServerResponse.createBySuccess(userInfo);
     }
     /*
@@ -125,7 +128,7 @@ public class UserController {
     /*
     * 退出登录
     * */
-    @RequestMapping(value = "logout")
+    @RequestMapping(value = "/logout")
     public ServerResponse logout(HttpSession session){
         session.removeAttribute(Const.CURRENTUSER);
         return ServerResponse.createBySuccess();

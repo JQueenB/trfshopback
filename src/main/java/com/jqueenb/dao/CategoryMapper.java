@@ -1,6 +1,8 @@
 package com.jqueenb.dao;
 
 import com.jqueenb.pojo.Category;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface CategoryMapper {
@@ -43,4 +45,13 @@ public interface CategoryMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Category record);
+    /*
+    * 查询子类（平级）
+    * */
+    List<Category> findChildCategory(Integer categoryId);
+    /*
+    * 根据品类parentid和categoryName查询信息
+    * */
+    Category findByParentIdAndCategoryName(@Param("parentId") Integer parentId,
+                                           @Param("categoryName") String categoryName);
 }

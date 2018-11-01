@@ -21,4 +21,23 @@ public class Const {
             this.code = code;
         }
     }
+    public enum CategoryEnum{
+        CATEGORY_D(0,"有效"),
+        CATEGORY_I(1,"失效")
+        ;
+        private int code;
+        private String desc;
+        private CategoryEnum(int code,String desc){
+            this.code=code;
+            this.desc=desc;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+    }
 }
