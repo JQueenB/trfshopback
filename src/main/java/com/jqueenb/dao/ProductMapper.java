@@ -1,8 +1,10 @@
 package com.jqueenb.dao;
 
 import com.jqueenb.pojo.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ProductMapper {
     /**
@@ -44,4 +46,19 @@ public interface ProductMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Product record);
+
+    /*
+    * 更新产品
+    * */
+    int updateProductKeySelective(Product product);
+    /*
+    * 按照productId/productName查询
+    * */
+    List<Product> findProductByProductIdAndProductName(@Param("productId") Integer productId,
+                                                       @Param("productName") String productName);
+    /*
+    * 前台搜索商品模糊查询
+    * */
+    List<Product> searchProduct(@Param("integerSet") Set<Integer> integerSet,
+                                @Param("keyword")String keyword);
 }
