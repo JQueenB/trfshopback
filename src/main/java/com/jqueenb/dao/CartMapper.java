@@ -1,6 +1,8 @@
 package com.jqueenb.dao;
 
 import com.jqueenb.pojo.Cart;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface CartMapper {
@@ -43,4 +45,33 @@ public interface CartMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Cart record);
+    /*
+    * 根据Userid和ProductId查询
+    * */
+    Cart selectCartByUseridAndProductId(@Param("userId") Integer userId,
+                                        @Param("productId") Integer productId);
+    /*
+    * 根据Userid查询用户的购物车信息
+    * */
+    List<Cart> selectCartByUserid(Integer userId);
+    /*
+    * 统计用户购物信息是否全选
+    * 大于0未全选
+    * */
+    int isCheckedAll(Integer userId);
+    /*
+    * 删除购物车某些商品
+    * */
+    int deleteByUseridAndProductIds(@Param("userId") Integer userId,
+                                    @Param("productIdList") List<Integer> productIdList);
+    /*
+    * 操作购物车是否选中
+    * */
+    int selectOrUnselectProduct(@Param("userId") Integer userId,
+                                @Param("productId") Integer productId,
+                                @Param("check") Integer check);
+    /*
+    * 统计购物车中产品的数量
+    * */
+    int get_cart_product_count(Integer userId);
 }
