@@ -14,6 +14,7 @@ import com.jqueenb.pojo.Product;
 import com.jqueenb.service.ICategoryService;
 import com.jqueenb.service.IProductServer;
 import com.jqueenb.utils.DateUtils;
+import com.jqueenb.utils.FTPUtil;
 import com.jqueenb.utils.PropertiesUtils;
 import com.jqueenb.vo.ProductDetailVo;
 import com.jqueenb.vo.ProductListVo;
@@ -200,10 +201,12 @@ public class ProductServiceImpl implements IProductServer {
         try {
             file.transferTo(file1);
             //上传到图片服务器
-            //。。。
+            FTPUtil.uploadFile(Lists.newArrayList(file1));
             Map<String,String> map=Maps.newHashMap();
             map.put("uri",newFileName);
             map.put("url",PropertiesUtils.readByKey("imageHost")+"/"+newFileName);
+            //删除应用服务器上的图片
+            file1.delete();
             return ServerResponse.createBySuccess(map);
         } catch (IOException e) {
             e.printStackTrace();

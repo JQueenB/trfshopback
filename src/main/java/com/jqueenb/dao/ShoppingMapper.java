@@ -1,6 +1,8 @@
 package com.jqueenb.dao;
 
 import com.jqueenb.pojo.Shopping;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface ShoppingMapper {
@@ -43,4 +45,12 @@ public interface ShoppingMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Shopping record);
+
+    int updateSelectiveKey(Shopping shopping);
+
+    /*
+    * 删除地址
+    * */
+    int deleteByUserIdAndShopping(@Param("userId") Integer userId,
+                                  @Param("shoppingId") Integer shoppingId);
 }

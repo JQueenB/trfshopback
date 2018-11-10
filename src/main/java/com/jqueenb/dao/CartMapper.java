@@ -74,4 +74,14 @@ public interface CartMapper {
     * 统计购物车中产品的数量
     * */
     int get_cart_product_count(Integer userId);
+
+    /*
+    * 查询购物车中用户已选中的商品
+    * */
+    List<Cart> findCartListByUserIdAndChecked(Integer userId);
+
+    /*
+    * 批量删除购物车商品
+    * */
+    int batchDelete(List<Cart> cartList);
 }

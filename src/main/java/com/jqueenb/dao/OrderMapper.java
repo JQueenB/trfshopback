@@ -1,6 +1,9 @@
 package com.jqueenb.dao;
 
 import com.jqueenb.pojo.Order;
+import com.jqueenb.pojo.OrderItem;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface OrderMapper {
@@ -43,4 +46,19 @@ public interface OrderMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Order record);
+
+    /*
+    * 取消订单--查询订单
+    * @userid
+    * @orderno
+    * */
+    Order findOrderByUseridAndOrderNo(@Param("userId") Integer userId,
+                                      @Param("orderNo") Long orderNo);
+    Order findOrderByOrderNo(Long orderNo);
+    /*
+    * 根据userid查询
+    * */
+    List<Order> findOrderByUserId(Integer userId);
+    /*发货并更新订单状态和时间*/
+    int updateStatusAndSendtime(Order order);
 }

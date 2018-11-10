@@ -2,6 +2,11 @@ package com.jqueenb.common;
 
 public class Const {
     public static final String CURRENTUSER="current_user";
+    public static final String TRADE_SUCCESS="TRADE_SUCCESS";
+
+
+
+
     public enum RoleEnum{
         ROLE_ADMIN(0,"管理员"),
         ROLE_CUSTOMER(1,"普通用户")
@@ -83,6 +88,95 @@ public class Const {
             return code;
         }
 
+        public void setCode(int code) {
+            this.code = code;
+        }
+    }
+
+    public enum OrderStatusEnum{
+        Order_CANCELED(0,"已取消"),
+        Order_UN_PAY(10,"未付款"),
+        Order_PAYDE(20,"已付款"),
+        Order_SEND(40,"已发货"),
+        Order_SUCCESS(50,"交易成功"),
+        Order_CLOSED(60,"交易关闭")
+        ;
+        private int code;
+        private String desc;
+        private OrderStatusEnum(int code,String desc){
+            this.code=code;
+            this.desc=desc;
+        }
+
+        public int getCode() {
+            return code;
+        }
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public static OrderStatusEnum codeOf(Integer code){
+            for(OrderStatusEnum orderStatusEnum:values()){
+                if(code==orderStatusEnum.getCode()){
+                    return orderStatusEnum;
+                }
+            }
+            return null;
+        }
+    }
+
+    public enum PaymentEnum{
+        PAY_ONLINE(1,"线上支付")
+        ;
+        private int code;
+        private String desc;
+        private PaymentEnum(int code,String desc){
+            this.code=code;
+            this.desc=desc;
+        }
+
+        public int getCode() {
+            return code;
+        }
+        public String getDesc() {
+            return desc;
+        }
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public static PaymentEnum codeOf(Integer code){
+            for(PaymentEnum paymentEnum:values()){
+                if(code==paymentEnum.getCode()){
+                    return paymentEnum;
+                }
+            }
+            return null;
+        }
+
+    }
+
+
+    public enum PaymentPlatformEnum{
+        ALIPAY(1,"支付宝")
+        ;
+        private int code;
+        private String desc;
+        private PaymentPlatformEnum(int code,String desc){
+            this.code=code;
+            this.desc=desc;
+        }
+
+        public int getCode() {
+            return code;
+        }
+        public String getDesc() {
+            return desc;
+        }
         public void setCode(int code) {
             this.code = code;
         }
